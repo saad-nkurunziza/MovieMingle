@@ -3,6 +3,7 @@ import { Slider } from "@/components/Slider";
 import AverageMovieCard from "@/components/AverageMovieCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -67,11 +68,12 @@ export default async function Home() {
             </p>
             <div className="flex space-x-4">
               <Button
-                className="bg-white text-black rounded-lg"
+                className="bg-white hover:bg-white/80 hover:text-black/80 text-black rounded-lg"
                 size="default"
                 variant="secondary"
+                asChild
               >
-                Trailer
+                <Link href={`/movie/${popularMovies[1].id}`}>More</Link>
               </Button>
             </div>
             <div className="flex items-center space-x-2">
