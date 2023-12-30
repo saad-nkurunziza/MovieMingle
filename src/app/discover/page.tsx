@@ -23,17 +23,9 @@ import { tmdb_url } from "@/lib/constants";
 import { MovieTypes, TVShow } from "@/lib/types";
 import MovieCard from "@/components/MovieCard";
 import ShowCard from "@/components/TVShowCard";
+import { fetchDiscoverMovies } from "@/lib/actions/movies";
 const API_KEY = process.env.TMDB_API_KEY;
 
-const fetchDiscoverMovies = async () => {
-  const data = await axios.get(`${tmdb_url}/discover/movie`, {
-    params: {
-      api_key: API_KEY,
-    },
-  });
-
-  return data.data.results;
-};
 const fetchDiscoverShows = async () => {
   const data = await axios.get(`${tmdb_url}/discover/tv`, {
     params: {

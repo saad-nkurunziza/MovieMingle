@@ -101,6 +101,16 @@ export const fetchCastDetails = async (id: string) => {
   return { cast: data.data.cast, crew: data.data.crew };
 };
 
+export const fetchDiscoverMovies = async () => {
+  const data = await axios.get(`${tmdb_url}/discover/movie`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  return data.data.results;
+};
+
 export const fetchReviews = async (id: string) => {
   const data = await axios.get(`${tmdb_url}/movie/${id}/reviews`, {
     params: {

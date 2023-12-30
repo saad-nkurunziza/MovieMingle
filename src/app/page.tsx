@@ -7,6 +7,7 @@ import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchNowPlayingMovies,
+  fetchDiscoverMovies,
   fetchTrendingMovies,
 } from "@/lib/actions/movies";
 import { MovieTypes, TVShow } from "@/lib/types";
@@ -38,6 +39,9 @@ export default async function Home() {
     return <div>Something is wrong </div>;
   }
   const year = extractYear(popularMovies[1].release_date);
+  const discoverMovies: MovieTypes[] = await fetchDiscoverMovies();
+  // const random = Math.floor(Math.random() * movies.length);
+  // setRandomMovie(movies[random]);
   return (
     <main className="w-full">
       <div className="overflow-x-hidden w-full relative h-[90vh] overflow-y-hidden">
@@ -96,18 +100,18 @@ export default async function Home() {
           />*/}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <AverageMovieCard movie={popularMovies[4]} />
-            <AverageMovieCard movie={popularMovies[5]} />
+            <AverageMovieCard movie={discoverMovies[8]} />
           </div>
           <Slider tag="movies" movies={popularMovies} title="Top rated" />
           <Slider tag="shows" shows={topRatedTVShows} title="Top rated shows" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <AverageMovieCard movie={popularMovies[4]} />
-            <AverageMovieCard movie={popularMovies[5]} />
+            <AverageMovieCard movie={discoverMovies[6]} />
+            <AverageMovieCard movie={discoverMovies[9]} />
           </div>
           <Slider tag="movies" movies={nowPlayingMovies} title="Now Playing" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <AverageMovieCard movie={popularMovies[4]} />
-            <AverageMovieCard movie={popularMovies[5]} />
+            <AverageMovieCard movie={discoverMovies[10]} />
+            <AverageMovieCard movie={discoverMovies[3]} />
           </div>
           <Slider
             tag="shows"
