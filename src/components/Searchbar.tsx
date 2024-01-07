@@ -1,57 +1,28 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { DialogTrigger, DialogContent, Dialog } from "@/components/ui/dialog";
-import {
-  CommandInput,
-  CommandEmpty,
-  CommandItem,
-  CommandGroup,
-  CommandSeparator,
-  CommandShortcut,
-  CommandList,
-  Command,
-} from "@/components/ui/command";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { SearchIcon, HistoryIcon } from "@/components/utils/Icons";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { useEffect, useState } from "react";
+import { Input } from "./ui/input";
 
-export default function Searchbar() {
-  const [query, setQuery] = useState();
-  // const router = useRouter();
+const Searchbar = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   router.push(`/?q=` + query);
-  // }, [query, router]);
+  useEffect(() => {
+    router.push(`/search?q=` + searchValue);
+  }, [searchValue, router]);
+
   return (
-    <div className="hidden md:block">
-      <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">
-          <SearchIcon className="w-4 h-4 mr-2" /> Search here ...
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="p-0">
-        <div className="flex flex-col w-full">
-          <Input>
-            <SearchIcon className="w-4 h-4 mr-2" />
-            <span>Search</span>
-          </Input>
-          <div>
-            <div className="flex gap-x-1">
-              <div className="w-5 h-5 bg-neutral-600 rounded" />
-              <div>
-                <div className="flex gap-x-2">
-                  <h3>Go On</h3>
-                  <span>2021</span>
-                </div>
-                <p>Alraedynnnnnnnnnnnnn</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-    </div>
+    <form className="flex-1 ml-auto md:w-2/3">
+            <Input
+              className="rounded-lg py-4 shadow"
+              placeholder="Search for movies, genres, actors..."
+              type="search"
+              value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+            />
+          </form>
   );
-}
+};
+
+export default Searchbar;

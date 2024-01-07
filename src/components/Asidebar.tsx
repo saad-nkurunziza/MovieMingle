@@ -1,5 +1,6 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "@/components/utils/Icons";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 export default function Asidebar() {
   return (
@@ -11,7 +12,7 @@ export default function Asidebar() {
         <SheetContent className="flex flex-col">
           <div className="flex flex-col justify-start my-5 px-3 py-5">
             <h3 className="text-lg font-bold text-foreground">Page links</h3>
-            <nav className="gap-y-2 my-2 flex flex-col">
+            <nav className="gap-y-2 my-2 flex flex-col px-2">
               <Link className="text-sm text-muted-foreground" href="/">
                 Home
               </Link>
@@ -20,6 +21,10 @@ export default function Asidebar() {
               </Link>
               <Link className="text-sm text-muted-foreground" href="/actor">
                 Actor
+              </Link>
+              <Separator/>
+              <Link className="text-sm text-muted-foreground" href="/search">
+                Search
               </Link>
             </nav>
           </div>

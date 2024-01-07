@@ -3,8 +3,8 @@ import { tmdb_url } from "@/lib/constants";
 
 const API_KEY = process.env.TMDB_API_KEY;
 
-export const searchQuery = async (query: string) => {
-  const data = await axios.get(`${tmdb_url}/search/multi`, {
+export const searchQuery = async (query: string, tag: string) => {
+  const data = await axios.get(`${tmdb_url}/search/${tag}`, {
     params: {
       query: query,
       api_key: API_KEY,

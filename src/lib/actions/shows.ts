@@ -16,7 +16,7 @@ export const fetchPopularTVShows = async () => {
 
 export const fetchTrendingTVShows = async (time: "day" | "week") => {
   try {
-    const data = await axios.get(`${tmdb_url}/tending/tv/${time}`, {
+    const data = await axios.get(`${tmdb_url}/trending/tv/${time}`, {
       params: {
         api_key: API_KEY,
       },

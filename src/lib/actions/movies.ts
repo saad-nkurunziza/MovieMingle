@@ -15,7 +15,7 @@ export const fetchPopularMovies = async () => {
 };
 
 export const fetchTrendingMovies = async (time: "day" | "week") => {
-  const data = await axios.get(`${tmdb_url}/tending/movie/${time}`, {
+  const data = await axios.get(`${tmdb_url}/trending/movie/${time}`, {
     params: {
       api_key: API_KEY,
     },

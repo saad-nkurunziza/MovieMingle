@@ -14,7 +14,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { HistoryIcon } from "@/components/utils/Icons";
-import { tags } from "@/lib/constants";
 export function NavMenu() {
   return (
     <NavigationMenu className="hidden md:block">
@@ -23,7 +22,7 @@ export function NavMenu() {
           <NavigationMenuTrigger>Quick access</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
+              <li className="row-span-4">
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
@@ -40,26 +39,17 @@ export function NavMenu() {
                 </NavigationMenuLink>
               </li>
               <ListItem href="/" title="Home">
-                Home
+                Back to home
               </ListItem>
               <ListItem href="/discover" title="Discover">
-                Discover
+                Discover movies and tv shows
               </ListItem>
               <ListItem href="/actor" title="Actors">
-                Actors
+                Discover actors
               </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Genres</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {tags.map((tag) => (
-                <ListItem key={tag.name} title={tag.name} href={tag.path}>
-                  {tag.description}
-                </ListItem>
-              ))}
+              <ListItem href="/search" title="Search">
+                Search here ...
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
