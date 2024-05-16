@@ -4,14 +4,19 @@ import axios from "axios";
 import { tmdb_url } from "@/lib/constants";
 
 const API_KEY = process.env.TMDB_API_KEY;
+export const revalidate = 3600;
 
 export const fetchPopularMovies = async () => {
-  const data = await axios.get(`${tmdb_url}/movie/popular`, {
-    params: {
-      api_key: API_KEY,
-    },
+  // const data = await axios.get(`${tmdb_url}/movie/popular`, {
+  //   params: {
+  //     api_key: API_KEY,
+  //   },
+  // });
+  const res = await fetch(`${tmdb_url}/movie/popular?api_key=${API_KEY}`, {
+    next: { tags: ["popular_movies"] },
   });
-  return data.data.results;
+  const data = await res.json();
+  return data.results;
 };
 
 export const fetchTrendingMovies = async (time: "day" | "week") => {
@@ -40,6 +45,37 @@ export const fetchNowPlayingMovies = async () => {
   });
   return data.data.results;
 };
+
+export const fetchDiscoverMovies = async () => {
+  const data = await axios.get(`${tmdb_url}/discover/movie`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  return data.data.results;
+};
+
+export const fetchSimilarMovies = async (id: string) => {
+  const data = await axios.get(`${tmdb_url}/movie/${id}/similar`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  return data.data.results;
+};
+
+export const fetchRecommendedMovies = async (id: string) => {
+  const data = await axios.get(`${tmdb_url}/movie/${id}/recommendations`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+  return data.data.results;
+};
+
+////////////// ID BASED //////////////////
 
 export const fetchMovieById = async (id: string) => {
   const data = await axios.get(`${tmdb_url}/movie/${id}`, {
@@ -101,16 +137,6 @@ export const fetchCastDetails = async (id: string) => {
   return { cast: data.data.cast, crew: data.data.crew };
 };
 
-export const fetchDiscoverMovies = async () => {
-  const data = await axios.get(`${tmdb_url}/discover/movie`, {
-    params: {
-      api_key: API_KEY,
-    },
-  });
-
-  return data.data.results;
-};
-
 export const fetchReviews = async (id: string) => {
   const data = await axios.get(`${tmdb_url}/movie/${id}/reviews`, {
     params: {
@@ -118,24 +144,5 @@ export const fetchReviews = async (id: string) => {
     },
   });
 
-  return data.data.results;
-};
-
-export const fetchSimilarMovies = async (id: string) => {
-  const data = await axios.get(`${tmdb_url}/movie/${id}/similar`, {
-    params: {
-      api_key: API_KEY,
-    },
-  });
-
-  return data.data.results;
-};
-
-export const fetchRecommendedMovies = async (id: string) => {
-  const data = await axios.get(`${tmdb_url}/movie/${id}/recommendations`, {
-    params: {
-      api_key: API_KEY,
-    },
-  });
   return data.data.results;
 };

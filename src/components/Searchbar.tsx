@@ -13,15 +13,15 @@ const Searchbar = () => {
   }, [searchValue, router]);
 
   return (
-    <form className="flex-1 ml-auto md:w-2/3">
-            <Input
-              className="rounded-lg py-4 shadow"
-              placeholder="Search for movies, genres, actors..."
-              type="search"
-              value={searchValue}
+    <form className="md:ml-auto w-2/3">
+      <Input
+        className="rounded-lg py-4 shadow"
+        placeholder="Search for movies, genres, actors..."
+        type="search"
+        value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-            />
-          </form>
+      />
+    </form>
   );
 };
 

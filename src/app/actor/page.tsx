@@ -13,7 +13,7 @@ const page = async () => {
     return <div>Something is wrong </div>;
   }
   return (
-    <section>
+    <section className="mb-3">
       <Tabs defaultValue="trending" className="container">
         <TabsList>
           <TabsTrigger value="trending">Trending</TabsTrigger>
@@ -22,20 +22,24 @@ const page = async () => {
         <TabsContent value="popular">
           <div className=" flex flex-col gap-y-6">
             <h3 className="my-4 text-lg">Popular Actors</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-8 gap-5">
-              {popularActors.map((actor) => (
-                <CardContainer actor={actor} key={actor.id} />
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5">
+              {popularActors
+                .filter((actor) => actor.known_for_department === "Actor")
+                .map((actor) => (
+                  <CardContainer actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
         </TabsContent>
         <TabsContent value="trending">
           <div className=" flex flex-col gap-y-6">
             <h3 className="my-4 text-lg">Trending Actors</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-8 gap-5">
-              {trendingActors.map((actor) => (
-                <CardContainer actor={actor} key={actor.id} />
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5">
+              {trendingActors
+                .filter((actor) => actor.known_for_department === "Actor")
+                .map((actor) => (
+                  <CardContainer actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
         </TabsContent>
@@ -59,14 +63,16 @@ function CardContainer({ actor }: { actor: CastTypes }) {
         />
       </div>
 
-      <div className="px-3 py-2.5 flex flex-col gap-y-1.5">
+      <div className="px-2.5 pb-1 pt-2.5 flex flex-col gap-y-1.5">
         <Link href={`/actor/${actor.id}`}>
-          <CardTitle className=" flex flex-col space-y-1">
-            <h3 className="text-[13px] mt-2">{actor.original_name}</h3>
+          <div className=" flex flex-col space-y-1">
+            <h3 className="text-[13px] mt-2 font-semibold leading-none tracking-tight">
+              {actor.original_name}
+            </h3>
             <p className="text-gray-300 text-[12px]">
               &quot;{actor.character}&quot;
             </p>
-          </CardTitle>
+          </div>
         </Link>
         <div className="flex justify-between items-center">
           {/*<p className="text-xs text-white/60">212min</p>*/}

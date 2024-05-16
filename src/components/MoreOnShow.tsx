@@ -9,7 +9,7 @@ const MoreOnShow = ({ show }: { show: TVShowDetails }) => {
         <Container title="Status">
           <h2 className="">{show.status}</h2>
         </Container>
-        <Container title="Released Year">
+        <Container title="Released Date">
           <h2 className="">{show.first_air_date}</h2>
         </Container>
         <Container title="Seasons">

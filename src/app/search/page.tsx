@@ -1,20 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CardContent, Card } from "@/components/ui/card";
-import {
-  DialogTrigger,
-  DialogTitle,
-  DialogDescription,
-  DialogHeader,
-  DialogFooter,
-  DialogContent,
-  Dialog,
-} from "@/components/ui/dialog";
 import Searchbar from "@/components/Searchbar";
 import { searchQuery } from "@/lib/actions/search";
-import MovieCard from "@/components/MovieCard";
-import ShowCard from "@/components/TVShowCard";
 import CastCard from "@/components/CastCard";
 import { MovieTypes, TVShow, CastTypes } from "@/lib/types";
+import CineCard from "@/components/CineCard";
+import SearchResultCard from "@/components/SearchResultCard";
 
 export default async function page({
   searchParams,
@@ -37,15 +27,18 @@ export default async function page({
       </header>
 
       <Tabs defaultValue="movies">
-        <div className="grid md:grid-cols-6 gap-10 items-start">
-          <div className="col-span-1 px-2 md:px-4 grid gap-4">
+        <div className="md:grid flex flex-col md:grid-cols-6 gap-10 md:items-start">
+          <div className="md:col-span-1 px-2 md:px-4 flex flex-col md:grid gap-4">
             <h2 className="font-semibold text-xl">Filters</h2>
-            <TabsList className="bg-transparent h-full">
-              <div className="flex md:flex-col bg-black gap-y-3 w-full">
+            <TabsList className="bg-transparent w-fit border h-full">
+              <div className="flex md:flex-col   bg-black gap-y-3">
                 <TabsTrigger value="movies" className="py-2 w-fit">
                   Movies
                 </TabsTrigger>
-                <TabsTrigger value="tv" className="py-2 w-fit">
+                <TabsTrigger
+                  value="tv"
+                  className="py-2 border-l border-r w-fit"
+                >
                   TV Shows
                 </TabsTrigger>
                 <TabsTrigger value="person" className="py-2 w-fit">
@@ -60,51 +53,56 @@ export default async function page({
               </div>
             </TabsList>
           </div>
-
-          <div className="col-span-5 grid gap-4">
-            <h2 className="font-semibold text-xl">Results</h2>
-            <div className="grid gap-6">
-              <TabsContent value="movies"><div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
+          {query === "" ? (
+            <div className="flex justify-center items-center text-muted-foreground">
+              No query
+            </div>
+          ) : (
+            <div className="md:col-span-5 grid gap-4">
+              <h2 className="font-semibold text-xl">Results</h2>
+              <div className="grid gap-6">
+                <TabsContent value="movies">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
                     {resultMovies.map((movie) => (
-                      <MovieCard key={movie.id} movie={movie} />
+                      <SearchResultCard
+                        key={movie.id}
+                        id={movie.id}
+                        poster_path={movie.poster_path}
+                        title={movie.title}
+                        description={movie.overview}
+                        tag="movie"
+                      />
                     ))}
-                  </div></TabsContent>
-              <TabsContent value="tv"><div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
+                  </div>
+                </TabsContent>
+                <TabsContent value="tv">
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     {resultShows.map((show) => (
-                      <ShowCard key={show.id} show={show} />
+                      <SearchResultCard
+                        key={show.id}
+                        id={show.id}
+                        poster_path={show.poster_path}
+                        title={show.name}
+                        description={show.overview}
+                        tag="show"
+                      />
                     ))}
-                  </div></TabsContent>
-              <TabsContent value="person"><div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
+                  </div>
+                </TabsContent>
+                <TabsContent value="person">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
                     {resultActors.map((person) => (
                       <CastCard key={person.id} cast={person} />
                     ))}
-                  </div></TabsContent>
-             {/* <TabsContent value="network">Network tab</TabsContent>
+                  </div>
+                </TabsContent>
+                {/* <TabsContent value="network">Network tab</TabsContent>
               <TabsContent value="company">Company tab</TabsContent>*/}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Tabs>
     </main>
   );
-}
-
-{
-  /*<Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">View Details</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Movie Title</DialogTitle>
-            <DialogDescription>
-              A longer synopsis of the movie. Including the movie&apos;s rating,
-              release date, and more.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button type="submit">Watch Trailer</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>*/
 }

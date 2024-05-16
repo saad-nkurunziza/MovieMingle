@@ -22,8 +22,8 @@ const BannerOverlay = async (props: Props) => {
     const year = extractYear(show.last_air_date);
     return (
       <Card className="m-4 rounded-none border-none mx-auto overflow-hidden shadow-md w-full">
-        <div className="h-auto w-full md:flex">
-          <div className="w-full relative">
+        <div className="flex flex-col md:items-center gap-2 md:flex-row">
+          <div className="relative order-1 bg-zinc-700 md:order-2 md:w-1/2 flex-shrink-0">
             <Image
               alt={show.original_name}
               className="w-full h-full"
@@ -47,15 +47,17 @@ const BannerOverlay = async (props: Props) => {
               <p className="max-w-lg text-sm text-neutral-500">
                 {show.overview}
               </p>
-              <div className="flex space-x-4">
-                <Button
-                  className="text-black bg-white rounded-lg"
-                  size="default"
-                  variant="secondary"
-                >
-                  Trailer
-                </Button>
-              </div>
+
+              <Button
+                variant="outline"
+                className="w-fit shadow-sm px-4 md:px-5 py-1 md:py-1.5 my-6 rounded-lg"
+              >
+                <div className="flex gap-3 items-center text-xs">
+                  {/* <GitHubLogoIcon /> */}
+                  <h3>Trailer</h3>
+                </div>
+              </Button>
+
               <div className="flex items-center space-x-2">
                 <Badge>{show.original_language}</Badge>
                 <Badge>{`${show.number_of_seasons} seasons`}</Badge>

@@ -1,30 +1,34 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "@/components/utils/Icons";
+import { Bars2Icon } from "@heroicons/react/24/solid";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { navLinks } from "./NavigationMenu";
 export default function Asidebar() {
   return (
     <div className="md:hidden">
       <Sheet>
         <SheetTrigger>
-          <Menu width={22} height={22} />
+          <Bars2Icon className="w-4 h-4" />
         </SheetTrigger>
         <SheetContent className="flex flex-col">
           <div className="flex flex-col justify-start my-5 px-3 py-5">
-            <h3 className="text-lg font-bold text-foreground">Page links</h3>
-            <nav className="gap-y-2 my-2 flex flex-col px-2">
-              <Link className="text-sm text-muted-foreground" href="/">
-                Home
-              </Link>
-              <Link className="text-sm text-muted-foreground" href="/discover">
-                Discover
-              </Link>
-              <Link className="text-sm text-muted-foreground" href="/actor">
-                Actor
-              </Link>
-              <Separator/>
+            <h3 className="text-[10px] uppercase font-bold text-foreground">
+              general
+            </h3>
+            <nav className="gap-y-3 my-4 flex flex-col">
+              {navLinks.map((link) => (
+                <Link
+                  className="text-sm text-muted-foreground"
+                  href={link.path}
+                  key={link.path}
+                >
+                  {link.title}
+                </Link>
+              ))}
+              <Separator />
               <Link className="text-sm text-muted-foreground" href="/search">
-                Search
+                <Button variant="outline">Search</Button>
               </Link>
             </nav>
           </div>

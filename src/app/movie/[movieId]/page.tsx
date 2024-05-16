@@ -37,7 +37,9 @@ const page = async ({ params }: { params: { movieId: string } }) => {
         <div className="flex flex-col md:flex-row gap-x-6 justify-between">
           <div className="flex flex-col md:w-2/3 gap-y-16">
             <Slider tag="casts" casts={cast} title="Casting" />
-            {reviews.length > 0 && <Slider tag="reviews" title="Reviews" reviews={reviews} />}
+            {reviews.length > 0 && (
+              <Slider tag="reviews" title="Reviews" reviews={reviews} />
+            )}
           </div>
           <MoreOnMovie movie={movie} />
         </div>

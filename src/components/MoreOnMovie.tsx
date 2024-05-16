@@ -10,7 +10,7 @@ const MoreOnMovie = async ({ movie }: { movie: MovieDetailsTypes }) => {
         <Container title="Status">
           <h2 className="">{movie.status}</h2>
         </Container>
-        <Container title="Released Year">
+        <Container title="Released Date">
           <h2 className="">{movie.release_date}</h2>
         </Container>
         <Container title="Runtime">

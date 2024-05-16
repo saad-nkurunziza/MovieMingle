@@ -33,12 +33,12 @@ const TrailerButton = ({ trailers }: { trailers: TrailerTypes[] }) => {
             Trailer
           </Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className="">
           <DrawerHeader>
             <DrawerTitle>Trailers</DrawerTitle>
             <DrawerDescription>Youtube trailers</DrawerDescription>
           </DrawerHeader>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 container px-4 pb-6">
             {trailers.map((trailer) => {
               const thumbnailUrl = `https://img.youtube.com/vi/${trailer.key}/maxresdefault.jpg`;
               const videoUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
