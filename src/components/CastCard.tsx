@@ -9,7 +9,7 @@ interface Props {
 }
 const CastCard: FC<Props> = ({ cast }) => {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden relative">
       <Link href={`/actor/${cast.id}`}>
         <Image
           alt={cast.original_name}
@@ -28,12 +28,6 @@ const CastCard: FC<Props> = ({ cast }) => {
             <p className="text-gray-300 text-[12px] mt-2">
               &quot;{cast.character}&quot;
             </p>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <Badge className="text-xs w-fit rounded-full" variant={"outline"}>
-              {cast.known_for_department}
-            </Badge>
           </div>
         </div>
       </Link>

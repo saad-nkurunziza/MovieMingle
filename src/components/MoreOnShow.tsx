@@ -19,7 +19,7 @@ const MoreOnShow = ({ show }: { show: TVShowDetails }) => {
           <h2 className="">{show.number_of_episodes}</h2>
         </Container>
         <Container title="Genres">
-          <div className="flex gap-x-3">
+          <div className="flex gap-3">
             {show.genres.map((genre) => (
               <Badge key={genre.id}>{genre.name}</Badge>
             ))}
@@ -36,19 +36,25 @@ const MoreOnShow = ({ show }: { show: TVShowDetails }) => {
           </div>
         </Container>
         <Container title="Networks">
-          <div className="flex flex-col gap-y-1">
+          <div className="flex  flex-col gap-y-2">
             {show.networks.map((network) => (
-              <h2 key={network.id} className="text-sm font-semibold">
+              <Badge
+                variant={"outline"}
+                key={network.id}
+                className="text-sm w-fit font-semibold"
+              >
                 {network.name}
-              </h2>
+              </Badge>
             ))}
           </div>
         </Container>
 
         <Container title="Production Companies">
-          {show.production_companies.map((company) => (
-            <Badge key={company.id}>{company.name}</Badge>
-          ))}
+          <div className="grid grid-cols-2 gap-2">
+            {show.production_companies.map((company) => (
+              <Badge key={company.id}>{company.name}</Badge>
+            ))}
+          </div>
         </Container>
         {/*<Container title="Ratings">
           <Badge className="flex space-x-2">

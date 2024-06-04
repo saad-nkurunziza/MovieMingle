@@ -31,22 +31,30 @@ const MoreOnMovie = async ({ movie }: { movie: MovieDetailsTypes }) => {
           </div>
         </Container>
         <Container title="Production Companies">
-          <div className="flex flex-col gap-y-1">
+          <div className="flex flex-col  gap-1">
             {movie.production_companies.map((company) => (
-              <h2 key={company.name} className="text-sm font-semibold">
+              <Badge
+                key={company.name}
+                variant={"outline"}
+                className="text-sm w-fit font-semibold"
+              >
                 {company.name}
-              </h2>
+              </Badge>
             ))}
           </div>
         </Container>
 
         <Container title="Production Countries">
-          {movie.production_countries.map((country) => (
-            <Badge key={country.iso_3166_1}>{country.name}</Badge>
-          ))}
+          <div className="flex gap-2">
+            {movie.production_countries.map((country) => (
+              <Badge key={country.iso_3166_1} className="w-fit">
+                {country.name}
+              </Badge>
+            ))}
+          </div>
         </Container>
         <Container title="Ratings">
-          <Badge className="flex space-x-2">
+          <Badge className="flex space-x-2 w-fit bg-yellow-800 text-yellow-400">
             <h3 className="font-bold">TMDb : </h3>
             <div className="text-sm">{movie.vote_average}</div>
           </Badge>

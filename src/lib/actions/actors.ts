@@ -1,45 +1,44 @@
-import axios from "axios";
 import { tmdb_url } from "@/lib/constants";
 const API_KEY = process.env.TMDB_API_KEY;
 
 export const fetchPopularActors = async () => {
-  const data = await axios.get(`${tmdb_url}/person/popular`, {
-    params: {
-      api_key: API_KEY,
-    },
+  const res = await fetch(`${tmdb_url}/person/popular?api_key=${API_KEY}`, {
+    cache: "no-store",
   });
-  return data.data.results;
+  const data = await res.json();
+  return data.results;
 };
 
 export const fetchActorById = async (id: string) => {
   try {
-    const { data } = await axios.get(`${tmdb_url}/person/${id}`, {
-      params: { api_key: API_KEY },
+    const res = await fetch(`${tmdb_url}/person/${id}?api_key=${API_KEY}`, {
+      cache: "no-store",
     });
+    const data = await res.json();
     return data;
   } catch (error) {
     throw error;
   }
 };
+
 export const fetchCombinedCredits = async (id: string) => {
   try {
-    const { data } = await axios.get(
-      `${tmdb_url}/person/${id}/combined_credits`,
-      {
-        params: { api_key: API_KEY },
-      }
+    const res = await fetch(
+      `${tmdb_url}/person/${id}/combined_credits?api_key=${API_KEY}`,
+      { cache: "no-store" }
     );
-    return { cast: data.data.cast, crew: data.data.crew };
+    const data = await res.json();
+    return { cast: data.cast, crew: data.crew };
   } catch (error) {
     throw error;
   }
 };
 
 export const fetchTrendingActors = async () => {
-  const data = await axios.get(`${tmdb_url}/tending/person/day`, {
-    params: {
-      api_key: API_KEY,
-    },
-  });
-  return data.data.results;
+  const res = await fetch(
+    `${tmdb_url}/trending/person/day?api_key=${API_KEY}`,
+    { cache: "no-store" }
+  );
+  const data = await res.json();
+  return data.results;
 };

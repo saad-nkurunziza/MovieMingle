@@ -6,7 +6,7 @@ export default function ReviewCard({ review }: { review: ReviewTypes }) {
       <CardHeader>
         <CardTitle>{review.author}</CardTitle>
       </CardHeader>
-      <CardContent className="leading-7 pb-2 line-clamp-[13] text-sm text-white/80">
+      <CardContent className="leading-7 pb-2 line-clamp-6 text-sm text-white/80">
         &quot;{review.content}&quot;
       </CardContent>
     </Card>

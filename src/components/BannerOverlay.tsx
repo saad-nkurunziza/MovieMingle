@@ -37,7 +37,7 @@ const BannerOverlay = async (props: Props) => {
                 <h3 className="text-3xl font-extrabold text-white md:text-5xl">
                   {show.name}
                 </h3>
-                <h2 className="text text-white/70">{show.tagline}</h2>
+                <h2 className="text my-3 text-white/70">{show.tagline}</h2>
               </CardTitle>
               <Badge className="mt-1 w-fit" variant={"secondary"}>
                 {year}
@@ -50,7 +50,7 @@ const BannerOverlay = async (props: Props) => {
 
               <Button
                 variant="outline"
-                className="w-fit shadow-sm px-4 md:px-5 py-1 md:py-1.5 my-6 rounded-lg"
+                className="w-fit shadow-sm px-4 md:px-5 py-1 md:py-1.5 my-8 rounded-lg"
               >
                 <div className="flex gap-3 items-center text-xs">
                   {/* <GitHubLogoIcon /> */}

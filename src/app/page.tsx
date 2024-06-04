@@ -6,11 +6,11 @@ export default function Home() {
   // }
 
   return (
-    <main className="w-full">
+    <section className="w-full ">
       <Billboard />
       <section className="md:py-12 md:container">
         <Categories />
       </section>
-    </main>
+    </section>
   );
 }

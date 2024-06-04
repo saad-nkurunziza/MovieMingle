@@ -18,16 +18,19 @@ interface Props {
 const AverageMovieCard: FC<Props> = ({ movie }: { movie: MovieTypes }) => {
   const year = extractYear(movie.release_date);
   return (
-    <div className="flex flex-col md:items-center border gap-2 md:flex-row">
-      <div className="relative order-1 bg-zinc-700 md:order-2 h-80 md:h-72 md:w-1/2 flex-shrink-0">
-        <Image
-          alt={movie.original_title}
-          className="w-full h-auto"
-          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-          width={180}
-          height={270}
-          sizes="(max`-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
-        />
+    <div className="grid grid-cols-2 gap-1">
+      <div className="relative order-1 bg-zinc-700 md:order-2 h-full flex-shrink-0">
+        <div className="absolute inset-0 top-0 right-0">
+          <Image
+            alt={movie.original_title}
+            // className="w-full h-auto"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            fill
+            // width={180}
+            // height={270}
+            // sizes="(max`-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
+          />
+        </div>
       </div>
       <div className="w-full md:order-1 order-2 px-1.5 h-fit z-20">
         <CardHeader>
@@ -39,7 +42,9 @@ const AverageMovieCard: FC<Props> = ({ movie }: { movie: MovieTypes }) => {
           </Badge>
         </CardHeader>
         <CardContent className="mt-2">
-          <p className="text-sm text-white/50">{movie.overview} </p>
+          <p className="text-sm leading-6 line-clamp-6 text-muted-foreground">
+            {movie.overview}{" "}
+          </p>
         </CardContent>
         {/* <CardFooter>
           <Button className="mt-3" variant="link" asChild>

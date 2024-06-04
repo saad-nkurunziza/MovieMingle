@@ -23,7 +23,7 @@ export default async function page({
   return (
     <main className="w-full py-12 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto space-y-12">
-        <div className="flex flex-col sm:flex-row items-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center gap-10">
           <div className="relative self-start">
             <Avatar className="h-36 w-36 sm:h-56 sm:w-56 ">
               <AvatarImage
@@ -40,8 +40,8 @@ export default async function page({
             </Badge>
           </div>
 
-          <div className="space-y-2">
-            <h1 className="text-xl md:text-4xl font-bold">{actor.name}</h1>
+          <div className="space-y-4">
+            <h1 className="text-xl md:text-2xl font-semibold">{actor.name}</h1>
             <Badge>{actor.known_for_department}</Badge>
             <h1 className="text-sm font-bold">
               {actor.deathday !== null ? "Dead" : `${age} years old`}
@@ -53,11 +53,9 @@ export default async function page({
               Birth place: {actor.place_of_birth}
             </h1>
             {actor.also_known_as.length > 0 && (
-              <div className="w-full flex flex-col gap-y-2 border p-3 my-3 bg-background rounded-lg">
-                <h4 className="font-bold">Biography: </h4>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {actor.biography}
-                </p>
+              <div className="w-1/2 flex flex-col gap-y-2 my-3 rounded-lg">
+                <h4 className="font-medium">Biography: </h4>
+                <p className="">{actor.biography}</p>
               </div>
             )}
           </div>

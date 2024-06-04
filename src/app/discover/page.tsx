@@ -90,7 +90,7 @@ export default async function page({
     <div>
       {isMovie ? (
         <div className="flex flex-col gap-y-3">
-          <h3>Movies</h3>
+          <h3 className="text-lg font-medium my-4">Movies</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-1 mb-6">
             {movies.map((movie) => (
               <CineCard
@@ -105,7 +105,7 @@ export default async function page({
         </div>
       ) : (
         <div className="flex flex-col gap-y-3">
-          <h3>Tv Show</h3>
+          <h3 className="text-lg font-medium my-4">Tv Show</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1 mb-6">
             {shows.map((show) => (
               <CineCard

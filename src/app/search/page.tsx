@@ -20,25 +20,22 @@ export default async function page({
   // const resultNetworks = await searchQuery(query, "network");
   return (
     <main className="w-full px-4 mx-auto grid grid-rows-[auto_1fr] gap-4 md:gap-6 pb-10">
-      <header>
-        <div className="mx-auto h-16 flex items-center gap-4">
-          <Searchbar />
-        </div>
-      </header>
+      <div className="h-16 flex items-center gap-4">
+        <Searchbar />
+      </div>
 
       <Tabs defaultValue="movies">
         <div className="md:grid flex flex-col md:grid-cols-6 gap-10 md:items-start">
           <div className="md:col-span-1 px-2 md:px-4 flex flex-col md:grid gap-4">
-            <h2 className="font-semibold text-xl">Filters</h2>
-            <TabsList className="bg-transparent w-fit border h-full">
-              <div className="flex md:flex-col   bg-black gap-y-3">
+            <h2 className="text-muted-foreground font-semibold text-sm">
+              Filters
+            </h2>
+            <TabsList className="bg-transparent border-none w-fit border h-full">
+              <div className="flex md:flex-col bg-black gap-y-3">
                 <TabsTrigger value="movies" className="py-2 w-fit">
                   Movies
                 </TabsTrigger>
-                <TabsTrigger
-                  value="tv"
-                  className="py-2 border-l border-r w-fit"
-                >
+                <TabsTrigger value="tv" className="py-2 w-fit">
                   TV Shows
                 </TabsTrigger>
                 <TabsTrigger value="person" className="py-2 w-fit">
@@ -59,10 +56,12 @@ export default async function page({
             </div>
           ) : (
             <div className="md:col-span-5 grid gap-4">
-              <h2 className="font-semibold text-xl">Results</h2>
+              <h2 className="text-muted-foreground font-semibold text-sm">
+                Results
+              </h2>
               <div className="grid gap-6">
                 <TabsContent value="movies">
-                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-6">
                     {resultMovies.map((movie) => (
                       <SearchResultCard
                         key={movie.id}
@@ -76,7 +75,7 @@ export default async function page({
                   </div>
                 </TabsContent>
                 <TabsContent value="tv">
-                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                     {resultShows.map((show) => (
                       <SearchResultCard
                         key={show.id}
