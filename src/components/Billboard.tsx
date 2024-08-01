@@ -9,67 +9,45 @@ import { fetchTrendingMovies } from "@/lib/actions/movies";
 const Billboard = async () => {
   const todayTrendingMovies: MovieTypes[] = await fetchTrendingMovies("day");
   const year = extractYear(todayTrendingMovies[0].release_date);
+
   return (
-    <div className="overflow-x-hidden w-full relative flex h-[90vh] overflow-y-hidden">
-      <div className="absolute inset-0 -z-20">
+    <div className="relative bg-black text-white min-h-screen flex flex-col justify-end">
+      <div className="w-screen h-screen ">
         <Image
           src={`https://image.tmdb.org/t/p/original/${todayTrendingMovies[0].poster_path}`}
           alt={todayTrendingMovies[0].original_title}
           fill
-          loading="lazy"
-          style={
-            {
-              // aspectRatio: "16/9",
-              // objectFit: "cover",
-            }
-          }
+          sizes="100vw"
           priority
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
       </div>
-      {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0)]" /> */}
-      <div className="absolute bottom-1/3 translate-y-1/3 z-30 h-full">
-        <div className="flex flex-col relative space-y-5 self-start px-6 md:px-10 py-6 md:py-10">
-          <p className="text- text-xl md:text-3xl h-full lg:text-6xl font-bold drop-shadow-xl">
-            {todayTrendingMovies[0].title}
-          </p>
-          <p className="text-white mix-blend-difference text-[8px] md:text-lg mt-3 md:mt-8 drop-shadow-xl">
-            {todayTrendingMovies[0].overview}
-          </p>
-          <div className="flex flex-row items-center gap-3 mt-3 md:mt-4">
-            <button
-              className="
-        bg-white 
-        rounded-md 
-        py-1 md:py-2 
-        px-2 md:px-4
-        w-auto 
-        text-xs lg:text-lg 
-        mix-blend-difference
-        font-semibold
-        flex
-        text-black/90
-        flex-row
-        items-center
-        hover:bg-neutral-300
-        transition
-        "
-            >
-              <InformationCircleIcon className="w-4 md:w-7 text-black mr-1" />
-              Play
-            </button>
-            <button className="flex flex-row items-center w-auto px-2 py-1 text-xs font-semibold mix-blend-difference text-white transition bg-white rounded-md bg-opacity-30 md:py-2 md:px-4 lg:text-lg hover:bg-opacity-20">
-              <PlayIcon className="w-4 mr-1 md:w-7" />
-              More Info
-            </button>
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
+      <div className="relative z-10 mb-28 p-6 md:p-12 max-w-screen-lg">
+        <h1 className="text-4xl md:text-5xl font-black mb-4 text-red-600">
+          {todayTrendingMovies[0].title}
+        </h1>
+        <p className="text md:text-lg mb-8 line-clamp-4 max-w-3xl">
+          {todayTrendingMovies[0].overview}
+        </p>
+        <div className="flex space-x-4">
+          <div className="bg-red-600 text-white py-2 px-4 rounded-xl text-lg hover:bg-red-700 transition duration-300 flex ease-in-out cursor-pointer">
+            <PlayIcon className="w-4 md:w-7 mr-1" />
+            Watch Trailer
           </div>
-          <div className="flex items-center space-x-2">
-            <Badge>{todayTrendingMovies[0].original_language}</Badge>
-            <Badge>{year}</Badge>
-            {todayTrendingMovies[0].adult && (
-              <Badge variant={"destructive"}>18+</Badge>
-            )}
+          <div className="mix-blend-difference text-black/90 transition bg-white  py-2 px-4 rounded-xl text-lg hover:opacity-60 duration-300 ease-in-out cursor-pointer bg-opacity-90 flex">
+            <InformationCircleIcon className="w-4 md:w-7 mr-1" />
+            More Info
           </div>
         </div>
+      </div>
+
+      <div className="absolute px-4 -bottom-16 grid grid-cols-4 gap-1.5 md:gap-4 w-full pointer-events-none z-40">
+        <div className="gradient-box bg-gradient-to-tr from-blue-600 to-red-500 h-28 md:h-40"></div>
+        <div className="gradient-box bg-gradient-to-tr from-green-600 to-pink-500 h-28 md:h-40"></div>
+        <div className="gradient-box bg-gradient-to-tr from-red-600 to-cyan-500 h-28 md:h-40"></div>
+        <div className="gradient-box bg-gradient-to-tr from-sky-600 to-violet-500 h-28 md:h-40"></div>
       </div>
     </div>
   );

@@ -14,9 +14,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="custom-scrollbar flex flex-col overflow-x-hidden mx-auto">
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <FirstTimeDialog/> */}
-        <main className="pt-16 pb-6">{children}</main>
+        <main className="pb-6">{children}</main>
       </body>
     </html>
   );

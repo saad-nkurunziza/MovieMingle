@@ -18,8 +18,8 @@ interface Props {
 const AverageMovieCard: FC<Props> = ({ movie }: { movie: MovieTypes }) => {
   const year = extractYear(movie.release_date);
   return (
-    <div className="grid grid-cols-2 gap-1">
-      <div className="relative order-1 bg-zinc-700 md:order-2 h-full flex-shrink-0">
+    <div className="flex flex-col gap-1">
+      <div className="relative bg-zinc-700 h-full flex-shrink-0">
         <div className="absolute inset-0 top-0 right-0">
           <Image
             alt={movie.original_title}
@@ -32,7 +32,7 @@ const AverageMovieCard: FC<Props> = ({ movie }: { movie: MovieTypes }) => {
           />
         </div>
       </div>
-      <div className="w-full md:order-1 order-2 px-1.5 h-fit z-20">
+      <div className="w-full px-1.5 h-fit z-20">
         <CardHeader>
           <CardTitle className="text-sm font-semibold tracking-wide uppercase">
             {movie.title}

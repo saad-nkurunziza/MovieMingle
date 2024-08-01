@@ -13,7 +13,7 @@ interface Props {
 
 const CineCard: FC<Props> = ({ tag, id, title, poster_path }) => {
   return (
-    <Suspense fallback={<Skeleton className="h-4 height[270px] w-[200px]" />}>
+    <Suspense fallback={<Skeleton className="h-[270px] w-[200px]" />}>
       <Card className="overflow-hidden relative">
         <Link className="absolute inset-0" href={`/${tag}/${id}`}>
           <span className="sr-only">View</span>

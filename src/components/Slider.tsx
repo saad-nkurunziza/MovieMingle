@@ -111,8 +111,8 @@ const CarouselContainer = ({
       }}
       className="w-full"
     >
-      <div className="flex justify-between">
-        <h3 className="my-3 text-sm md:text-base font-medium">{title}</h3>
+      <div className="flex justify-between mb-3">
+        <h3 className="my-3 md:text-lg font-semibold">{title}</h3>
         <div className="relative my-auto">
           <ChevronRightIcon className="w-3 h-3" />
         </div>

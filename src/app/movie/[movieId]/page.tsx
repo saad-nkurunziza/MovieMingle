@@ -15,6 +15,7 @@ import {
   fetchSimilarMovies,
   fetchRecommendedMovies,
 } from "@/lib/actions/movies";
+import Overview from "@/components/Overview";
 
 const page = async ({ params }: { params: { movieId: string } }) => {
   const movie: MovieDetailsTypes = await fetchMovieById(params.movieId);
@@ -31,9 +32,10 @@ const page = async ({ params }: { params: { movieId: string } }) => {
     return <div>Something is wrong </div>;
   }
   return (
-    <section className="w-full">
-      <BannerOverlay type="movie" movie={movie} />
-      <div className="flex flex-col space-y-5 container">
+    <section className="w-full ">
+      {/* <BannerOverlay type="movie" movie={movie} /> */}
+      <Overview />
+      <div className="flex md:pt-28 flex-col space-y-5 container">
         <div className="flex flex-col md:flex-row gap-x-6 justify-between">
           <div className="flex flex-col md:w-2/3 gap-y-16">
             <Slider tag="casts" casts={cast} title="Casting" />

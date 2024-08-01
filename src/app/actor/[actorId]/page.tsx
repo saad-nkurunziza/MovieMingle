@@ -54,8 +54,8 @@ export default async function page({
             </h1>
             {actor.also_known_as.length > 0 && (
               <div className="w-1/2 flex flex-col gap-y-2 my-3 rounded-lg">
-                <h4 className="font-medium">Biography: </h4>
-                <p className="">{actor.biography}</p>
+                <h4 className="font-medium text-muted-foreground">Biography: </h4>
+                <p className="text-xs">{actor.biography}</p>
               </div>
             )}
           </div>
